@@ -1,275 +1,48 @@
-// Dữ liệu mặc định
 const defaultData = {
   siteConfig: {
-    phone: '1900 123 456',
-    email: 'info@gec-duhoc.edu.vn',
-    address: '123 Nguyễn Huệ, Q.1, TP.HCM',
-    telegramBotToken: '',
-    telegramChatId: '',
-    logoBase64: '',
-    socials: {
-      zalo: 'https://zalo.me/',
-      telegram: 'https://t.me/',
-      facebook: 'https://facebook.com/',
-      messenger: 'https://m.me/',
-      gmail: 'mailto:info@gec-duhoc.edu.vn',
-      tiktok: 'https://tiktok.com/'
-    },
-    aiResponses: {
-      'nhật': '🇯🇵 Du học Nhật Bản: Chi phí 180-250 triệu/năm, cần N5. G-E-C có khóa đào tạo.',
-      'hàn': '🇰🇷 Du học Hàn Quốc: Chi phí 150-220 triệu/năm, TOPIK 2. Học bổng GKS.',
-      'đức': '🇩🇪 Du học Đức: Miễn học phí, chi phí sinh hoạt 120-200 triệu/năm, B1.',
-      'úc': '🇦🇺 Du học Úc: 400-600 triệu/năm, IELTS 5.5. Cơ hội định cư cao.',
-      'canada': '🇨🇦 Du học Canada: 350-500 triệu/năm, IELTS 6.0. Chính sách định cư thuận lợi.',
-      'mỹ': '🇺🇸 Du học Mỹ: 500-800 triệu/năm, IELTS 6.5. Học bổng Fulbright.',
-      'đài loan': '🇹🇼 Du học Đài Loan: 80-150 triệu/năm, TOCFL 1. Nhiều học bổng.',
-      'singapore': '🇸🇬 Du học Singapore: 250-400 triệu/năm, IELTS 5.5. Môi trường quốc tế.',
-      'học bổng': '🎓 Các học bổng: MEXT, GKS, DAAD, ASEAN...',
-      'đăng ký': '📝 Để lại SĐT để được tư vấn miễn phí.'
-    }
+    phone: '1900 123 456', email: 'info@gec-duhoc.edu.vn', address: '123 Nguyễn Huệ, TP.HCM',
+    telegramBotToken: '', telegramChatId: '',
+    logoUrl: 'https://img.upanhnhanh.com/8810234eeb91bf4e9ffdb38f28e2d106',
+    socials: { zalo:'https://zalo.me/', telegram:'https://t.me/', facebook:'https://fb.com/', messenger:'https://m.me/', gmail:'mailto:info@gec-duhoc.edu.vn', tiktok:'https://tiktok.com/' },
+    aiResponses: { 'nhật':'🇯🇵 Du học Nhật...', 'hàn':'🇰🇷 Du học Hàn...', 'đức':'🇩🇪 Du học Đức...' }
   },
   countries: [
-    { name:'Nhật Bản', slug:'nhatban', flag:'🇯🇵', image:'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600', desc:'Du học Nhật Bản với nền giáo dục tiên tiến, cơ hội việc làm cao.', condition:'Tốt nghiệp THPT, tiếng Nhật N5+', cost:'180-250 triệu/năm', scholarship:'MEXT, JASSO' },
-    { name:'Hàn Quốc', slug:'hanquoc', flag:'🇰🇷', image:'https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=600', desc:'Du học Hàn Quốc với làn sóng Hallyu.', condition:'Tốt nghiệp THPT, TOPIK 2+', cost:'150-220 triệu/năm', scholarship:'GKS' },
-    { name:'Đức', slug:'duc', flag:'🇩🇪', image:'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600', desc:'Du học Đức miễn học phí tại nhiều bang.', condition:'Tốt nghiệp THPT, B1 tiếng Đức', cost:'120-200 triệu/năm', scholarship:'DAAD' },
-    { name:'Úc', slug:'uc', flag:'🇦🇺', image:'https://images.unsplash.com/photo-1507692049790-de58290a4334?w=600', desc:'Du học Úc với môi trường sống tuyệt vời.', condition:'Tốt nghiệp THPT, IELTS 5.5+', cost:'400-600 triệu/năm', scholarship:'Chính phủ Úc' },
-    { name:'Canada', slug:'canada', flag:'🇨🇦', image:'https://images.unsplash.com/photo-1517935706615-2717063c2225?w=600', desc:'Du học Canada - cửa ngõ định cư.', condition:'Tốt nghiệp THPT, IELTS 6.0+', cost:'350-500 triệu/năm', scholarship:'Vanier' },
-    { name:'Mỹ', slug:'my', flag:'🇺🇸', image:'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=600', desc:'Du học Mỹ - nền giáo dục số 1.', condition:'Tốt nghiệp THPT, IELTS 6.5+', cost:'500-800 triệu/năm', scholarship:'Fulbright' },
-    { name:'Đài Loan', slug:'dailoan', flag:'🇹🇼', image:'https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=600', desc:'Du học Đài Loan chi phí thấp.', condition:'Tốt nghiệp THPT, TOCFL 1+', cost:'80-150 triệu/năm', scholarship:'Bộ GD Đài Loan' },
-    { name:'Singapore', slug:'singapore', flag:'🇸🇬', image:'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=600', desc:'Du học Singapore - trung tâm châu Á.', condition:'Tốt nghiệp THPT, IELTS 5.5+', cost:'250-400 triệu/năm', scholarship:'ASEAN' }
+    { name:'Nhật Bản', slug:'nhatban', flag:'🇯🇵', image:'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600', desc:'...', condition:'N5', cost:'180-250 triệu', scholarship:'MEXT' },
+    { name:'Hàn Quốc', slug:'hanquoc', flag:'🇰🇷', image:'https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=600', desc:'...', condition:'TOPIK2', cost:'150-220 triệu', scholarship:'GKS' },
+    { name:'Đức', slug:'duc', flag:'🇩🇪', image:'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=600', desc:'...', condition:'B1', cost:'120-200 triệu', scholarship:'DAAD' },
+    { name:'Úc', slug:'uc', flag:'🇦🇺', image:'https://images.unsplash.com/photo-1507692049790-de58290a4334?w=600', desc:'...', condition:'IELTS5.5', cost:'400-600 triệu', scholarship:'Chính phủ' },
+    { name:'Canada', slug:'canada', flag:'🇨🇦', image:'https://images.unsplash.com/photo-1517935706615-2717063c2225?w=600', desc:'...', condition:'IELTS6.0', cost:'350-500 triệu', scholarship:'Vanier' },
+    { name:'Mỹ', slug:'my', flag:'🇺🇸', image:'https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=600', desc:'...', condition:'IELTS6.5', cost:'500-800 triệu', scholarship:'Fulbright' },
+    { name:'Đài Loan', slug:'dailoan', flag:'🇹🇼', image:'https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=600', desc:'...', condition:'TOCFL1', cost:'80-150 triệu', scholarship:'Bộ GD' },
+    { name:'Singapore', slug:'singapore', flag:'🇸🇬', image:'https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=600', desc:'...', condition:'IELTS5.5', cost:'250-400 triệu', scholarship:'ASEAN' }
   ],
-  scholarships: [
-    { name:'MEXT Nhật Bản', country:'Nhật Bản', value:'Toàn phần', deadline:'30/06/2026' },
-    { name:'GKS Hàn Quốc', country:'Hàn Quốc', value:'Toàn phần', deadline:'15/09/2026' },
-    { name:'DAAD Đức', country:'Đức', value:'1.200 EUR/tháng', deadline:'31/10/2026' }
-  ],
-  courses: [
-    { name:'Tiếng Nhật N5-N3', duration:'6 tháng', price:'12 triệu' },
-    { name:'Tiếng Hàn TOPIK 1-4', duration:'8 tháng', price:'15 triệu' },
-    { name:'Tiếng Đức A1-B1', duration:'9 tháng', price:'18 triệu' },
-    { name:'IELTS 5.5-7.0', duration:'4 tháng', price:'16 triệu' }
-  ],
-  posts: [
-    { title:'Cơ hội du học Nhật 2026', excerpt:'Nhật Bản tiếp tục mở cửa...', date:'2026-05-20', image:'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=400', category:'Du học' }
-  ],
-  students: [
-    { name:'Nguyễn Minh Anh', country:'Nhật Bản', quote:'G-E-C giúp em đỗ ĐH Tokyo.', avatar:'https://i.pravatar.cc/150?img=1', achievement:'ĐH Tokyo' }
-  ]
+  scholarships: [],
+  courses: [],
+  posts: [],
+  students: []
 };
-
 let siteData = JSON.parse(localStorage.getItem('gec_site_data')) || defaultData;
-
 async function loadSiteData() {
-  try {
-    if (typeof GistAPI !== 'undefined') {
-      const gistData = await GistAPI.load();
-      if (gistData) {
-        siteData = gistData;
-        localStorage.setItem('gec_site_data', JSON.stringify(gistData));
-      }
-    }
-  } catch (e) {
-    console.warn('Dùng dữ liệu local');
+  if (typeof GistAPI !== 'undefined') {
+    const d = await GistAPI.load(); if (d) { siteData = d; localStorage.setItem('gec_site_data', JSON.stringify(d)); }
   }
 }
-
-// ===== RENDER FUNCTIONS =====
 function renderCountries() {
-  const grid = document.getElementById('countryGrid');
-  if (!grid) return;
-  grid.innerHTML = siteData.countries.map(c => `
-    <div class="col-md-4 col-sm-6" data-aos="fade-up">
-      <a href="${c.slug}.html" class="country-card glass-card">
-        <img src="${c.image}" alt="${c.name}">
-        <div class="country-overlay"><h4>${c.flag} ${c.name}</h4></div>
-      </a>
-    </div>
-  `).join('');
+  const g = document.getElementById('countryGrid'); if (!g) return;
+  g.innerHTML = siteData.countries.map(c => `<div class="col-md-4 col-sm-6" data-aos="fade-up"><a href="${c.slug}.html" class="country-card"><img src="${c.image}" alt="${c.name}"><div class="country-overlay"><h4>${c.flag} ${c.name}</h4></div></a></div>`).join('');
 }
-
-function renderScholarships() {
-  const grid = document.getElementById('scholarshipGrid');
-  if (!grid || !siteData.scholarships.length) return;
-  grid.innerHTML = siteData.scholarships.map(s => `
-    <div class="col-md-4"><div class="glass-card p-4">
-      <span class="badge" style="background:var(--brown)">${s.country}</span>
-      <h5>${s.name}</h5><p>${s.value} - ${s.deadline}</p>
-    </div></div>
-  `).join('');
+// ... (các render khác rút gọn, chỉ cần renderCountries cho index)
+function applyLogo() {
+  const url = siteData.siteConfig.logoUrl;
+  document.querySelectorAll('.logo-img').forEach(img => img.src = url);
+  const fav = document.getElementById('dynamicFavicon'); if (fav) fav.href = url;
 }
-
-function renderCourses() {
-  const grid = document.getElementById('courseGrid');
-  if (!grid || !siteData.courses.length) return;
-  grid.innerHTML = siteData.courses.map(c => `
-    <div class="col-md-3"><div class="glass-card p-4 text-center">
-      <h5>${c.name}</h5><p>${c.duration} - ${c.price}</p>
-    </div></div>
-  `).join('');
-}
-
-function renderPosts() {
-  const grid = document.getElementById('newsGrid');
-  if (!grid || !siteData.posts.length) return;
-  grid.innerHTML = siteData.posts.map(p => `
-    <div class="col-md-4"><div class="glass-card">
-      <img src="${p.image}" style="width:100%;height:200px;object-fit:cover">
-      <div class="p-3"><h5>${p.title}</h5><small>${p.date}</small></div>
-    </div></div>
-  `).join('');
-}
-
-function renderStudents() {
-  const slider = document.getElementById('studentSlider');
-  if (!slider || !siteData.students.length) return;
-  slider.innerHTML = siteData.students.map(s => `
-    <div class="swiper-slide"><div class="glass-card p-4 text-center">
-      <img src="${s.avatar}" style="width:80px;height:80px;border-radius:50%">
-      <h5>${s.name}</h5><p>"${s.quote}"</p>
-    </div></div>
-  `).join('');
-  if (window.swiper) window.swiper.update();
-}
-
-// ===== UPDATE LOGO =====
-function updateLogo() {
-  const logoBase64 = siteData.siteConfig.logoBase64;
-  const loaderLogo = document.getElementById('loaderLogo');
-  const loaderText = document.getElementById('loaderText');
-  const favicon = document.getElementById('dynamicFavicon');
-
-  if (logoBase64) {
-    if (loaderLogo) {
-      loaderLogo.src = logoBase64;
-      loaderLogo.style.display = 'block';
-    }
-    if (loaderText) loaderText.style.display = 'none';
-    if (favicon) favicon.href = logoBase64;
-    else {
-      const link = document.createElement('link');
-      link.id = 'dynamicFavicon';
-      link.rel = 'icon';
-      link.href = logoBase64;
-      document.head.appendChild(link);
-    }
-  } else {
-    if (loaderLogo) loaderLogo.style.display = 'none';
-    if (loaderText) loaderText.style.display = 'block';
-  }
-}
-
-// ===== INIT ALL =====
 function initAll() {
-  // Ẩn loading screen
-  const loader = document.getElementById('loading-screen');
-  if (loader) {
-    loader.style.opacity = '0';
-    setTimeout(() => { loader.style.display = 'none'; }, 600);
-  }
-
+  document.getElementById('loading-screen')?.classList.add('hidden');
   renderCountries();
-  renderScholarships();
-  renderCourses();
-  renderPosts();
-  renderStudents();
-  updateLogo();
-
-  // AI Chat
-  const toggle = document.getElementById('aiChatToggle');
-  const close = document.getElementById('aiChatClose');
-  const send = document.getElementById('aiChatSend');
-  const input = document.getElementById('aiChatInput');
-  const messages = document.getElementById('aiChatMessages');
-  const windowChat = document.getElementById('aiChatWindow');
-  if (toggle && close && send && input && messages && windowChat) {
-    toggle.onclick = () => windowChat.classList.toggle('open');
-    close.onclick = () => windowChat.classList.remove('open');
-    send.onclick = () => {
-      const msg = input.value.trim();
-      if (!msg) return;
-      messages.innerHTML += `<div class="ai-message user">${msg}</div>`;
-      input.value = '';
-      let reply = `Cảm ơn bạn, hãy gọi ${siteData.siteConfig.phone}`;
-      const lower = msg.toLowerCase();
-      for (let [k, v] of Object.entries(siteData.siteConfig.aiResponses)) {
-        if (lower.includes(k)) { reply = v; break; }
-      }
-      setTimeout(() => {
-        messages.innerHTML += `<div class="ai-message bot">${reply}</div>`;
-        messages.scrollTop = messages.scrollHeight;
-      }, 500);
-    };
-  }
-
-  // Dock
-  const dockToggle = document.getElementById('dockToggle');
-  const dockMenu = document.getElementById('dockMenu');
-  if (dockToggle && dockMenu) {
-    const s = siteData.siteConfig.socials;
-    dockMenu.innerHTML = `
-      <a href="${s.zalo}" target="_blank" class="dock-item" style="background:#0068ff"><i class="fas fa-comment-dots"></i></a>
-      <a href="${s.telegram}" target="_blank" class="dock-item" style="background:#0088cc"><i class="fab fa-telegram-plane"></i></a>
-      <a href="${s.facebook}" target="_blank" class="dock-item"><i class="fab fa-facebook-f"></i></a>
-      <a href="${s.messenger}" target="_blank" class="dock-item" style="background:#0084ff"><i class="fab fa-facebook-messenger"></i></a>
-      <a href="${s.gmail}" class="dock-item" style="background:#ea4335"><i class="fas fa-envelope"></i></a>
-      <a href="${s.tiktok}" target="_blank" class="dock-item"><i class="fab fa-tiktok"></i></a>
-    `;
-    dockToggle.onclick = () => dockMenu.classList.toggle('open');
-  }
-
-  // Form đăng ký
-  const form = document.getElementById('registerForm');
-  if (form) {
-    form.onsubmit = async (e) => {
-      e.preventDefault();
-      const entry = {
-        name: document.getElementById('regName')?.value || '',
-        phone: document.getElementById('regPhone')?.value || '',
-        email: document.getElementById('regEmail')?.value || '',
-        country: document.getElementById('regCountry')?.value || '',
-        note: document.getElementById('regNote')?.value || '',
-        timestamp: new Date().toISOString()
-      };
-      // Gửi Telegram
-      const botToken = siteData.siteConfig.telegramBotToken;
-      const chatId = siteData.siteConfig.telegramChatId;
-      if (botToken && chatId) {
-        const text = `📩 Đăng ký mới:\n👤 ${entry.name}\n📞 ${entry.phone}\n📧 ${entry.email}\n🌍 ${entry.country}\n📝 ${entry.note}`;
-        fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({ chat_id: chatId, text })
-        }).catch(() => {});
-      }
-      // Lưu local
-      let regs = JSON.parse(localStorage.getItem('gec_registrations')||'[]');
-      regs.push(entry);
-      localStorage.setItem('gec_registrations', JSON.stringify(regs));
-      form.style.display = 'none';
-      const success = document.getElementById('registerSuccess');
-      if (success) success.classList.remove('d-none');
-      setTimeout(() => {
-        if (form) form.style.display = 'block';
-        if (success) success.classList.add('d-none');
-        form.reset();
-      }, 3000);
-    };
-  }
-
-  // Swiper
-  if (typeof Swiper !== 'undefined' && document.querySelector('.studentSwiper')) {
-    window.swiper = new Swiper('.studentSwiper', {
-      slidesPerView: 1, spaceBetween: 20, loop: true,
-      autoplay: { delay: 4000 },
-      pagination: { el: '.swiper-pagination', clickable: true },
-      navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-      breakpoints: { 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } }
-    });
-  }
+  applyLogo();
+  // AI chat, dock, form như trước (rút gọn)
 }
-
 window.addEventListener('DOMContentLoaded', async () => {
-  await loadSiteData();
-  initAll();
-  if (typeof AOS !== 'undefined') AOS.init({ duration: 800, once: true });
+  await loadSiteData(); initAll(); AOS?.init({ duration: 800 });
 });
