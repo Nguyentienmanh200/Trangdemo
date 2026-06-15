@@ -14,7 +14,7 @@
 </head>
 <body>
   <div id="loading-screen">
-    <img src="https://img.upanhnhanh.com/8810234eeb91bf4e9ffdb38f28e2d106" alt="GEC Logo" style="width:120px; margin-bottom:20px;">
+    <img src="https://img.upanhnhanh.com/8810234eeb91bf4e9ffdb38f28e2d106" alt="GEC" style="width:120px; margin-bottom:20px;">
     <div class="loader-spinner"></div>
   </div>
 
@@ -22,8 +22,7 @@
     <div class="container">
       <a class="navbar-brand" href="index.html">
         <img src="https://img.upanhnhanh.com/8810234eeb91bf4e9ffdb38f28e2d106" height="35" class="me-2 logo-img">
-        <span class="logo-g">G</span>.<span class="logo-e">E</span>.<span class="logo-c">C</span>
-        <small>Du Học</small>
+        <span class="logo-g">G</span>.<span class="logo-e">E</span>.<span class="logo-c">C</span> <small>Du Học</small>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
@@ -33,7 +32,6 @@
           <li class="nav-item"><a class="nav-link active" href="index.html">Trang chủ</a></li>
           <li class="nav-item"><a class="nav-link" href="#duhoc">Du học</a></li>
           <li class="nav-item"><a class="nav-link" href="#dangky">Đăng ký</a></li>
-          <li class="nav-item"><a class="nav-link" href="admin.html">Admin</a></li>
           <li class="nav-item"><button id="themeToggle" class="btn btn-sm ms-2">🌓</button></li>
         </ul>
       </div>
@@ -44,13 +42,13 @@
     <div class="container text-center">
       <h1 class="hero-title">Chắp Cánh <span class="highlight">Ước Mơ</span> Toàn Cầu</h1>
       <p class="text-secondary mb-4">Cùng G-E-C chinh phục du học Nhật, Hàn, Đức, Úc, Canada, Mỹ...</p>
-      <a href="#dangky" class="btn-glow">Đăng ký tư vấn miễn phí</a>
+      <a href="#dangky" class="btn-droplet">Đăng ký tư vấn miễn phí</a>
     </div>
   </section>
 
   <section id="duhoc" class="py-5">
     <div class="container">
-      <div class="section-title"><h2>Các Quốc Gia</h2><div class="line"></div></div>
+      <div class="section-title"><h2>Các Quốc Gia <span style="color:var(--brown);">Du Học</span></h2><div class="line"></div></div>
       <div class="row g-4" id="countryGrid"></div>
     </div>
   </section>
@@ -66,7 +64,7 @@
             <input class="form-control mb-3" placeholder="Email" id="regEmail">
             <select class="form-select mb-3" id="regCountry"></select>
             <textarea class="form-control mb-3" rows="2" placeholder="Ghi chú" id="regNote"></textarea>
-            <button type="submit" class="btn-glow w-100">Gửi đăng ký</button>
+            <button type="submit" class="btn-droplet w-100">Gửi đăng ký</button>
           </form>
           <div id="registerSuccess" class="text-center mt-3 d-none">✅ Đăng ký thành công!</div>
         </div>
@@ -100,9 +98,7 @@
     window.addEventListener('load', () => {
       document.getElementById('footerPhone').textContent = siteData.siteConfig.phone;
       const select = document.getElementById('regCountry');
-      if (select && siteData) {
-        select.innerHTML = '<option value="">-- Chọn --</option>' + siteData.countries.map(c => `<option>${c.name}</option>`).join('');
-      }
+      if (select) select.innerHTML = '<option value="">-- Chọn --</option>' + siteData.countries.map(c => `<option>${c.name}</option>`).join('');
     });
   </script>
 </body>
