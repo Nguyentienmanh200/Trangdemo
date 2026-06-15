@@ -2,6 +2,7 @@
   --brown: #8B5E3C;
   --red: #DC2626;
   --green: #16A34A;
+  --orange: #FF6600;
   --primary: var(--brown);
   --secondary: var(--red);
   --accent: var(--green);
@@ -33,14 +34,12 @@ body {
 .glass {
   background: var(--glass-bg);
   backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border);
   border-radius: 20px;
 }
 .glass-card {
   background: var(--bg-card);
   backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
   border: 1px solid var(--glass-border);
   border-radius: 20px;
   transition: all 0.4s;
