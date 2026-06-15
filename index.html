@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="vi" data-bs-theme="dark">
+<html lang="vi" data-bs-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>G-E-C Du Học - Chắp Cánh Ước Mơ Toàn Cầu</title>
-  <meta name="description" content="Trung tâm du học G-E-C - Nhật, Hàn, Đức, Úc, Canada, Mỹ, Đài Loan, Singapore">
-  <link id="dynamicFavicon" rel="icon" href="">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <title>G-E-C Du Học</title>
+  <link rel="icon" id="dynamicFavicon" href="https://img.upanhnhanh.com/8810234eeb91bf4e9ffdb38f28e2d106">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
@@ -14,175 +13,71 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <!-- Loading screen -->
-  <div id="loading-screen" style="position:fixed;inset:0;background:#0a0a1a;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:99999;transition:opacity 0.6s;">
-    <img id="loaderLogo" src="" style="max-width:150px;max-height:150px;object-fit:contain;display:none;">
-    <div id="loaderText" style="font-size:4rem;font-weight:900;letter-spacing:2px;">
-      <span style="color:#8B5E3C;">G</span>.
-      <span style="color:#DC2626;">E</span>.
-      <span style="color:#16A34A;">C</span>
-    </div>
-    <div style="width:50px;height:50px;border:3px solid rgba(255,255,255,0.1);border-top-color:#16A34A;border-radius:50%;animation:spin 0.8s linear infinite;margin-top:20px;"></div>
+  <div id="loading-screen" style="position:fixed;inset:0;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:99999;transition:opacity 0.5s;">
+    <img src="https://img.upanhnhanh.com/8810234eeb91bf4e9ffdb38f28e2d106" style="width:120px;margin-bottom:20px;" alt="GEC Logo">
+    <div style="width:50px;height:50px;border:3px solid #e2e8f0;border-top-color:#8B5E3C;border-radius:50%;animation:spin 0.8s linear infinite;"></div>
   </div>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-glass fixed-top">
+  <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html"><span class="logo-g">G</span>.<span class="logo-e">E</span>.<span class="logo-c">C</span> <small style="color:#cbd5e1;">Du Học</small></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon" style="filter:invert(1)"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <a class="navbar-brand" href="index.html"><img src="https://img.upanhnhanh.com/8810234eeb91bf4e9ffdb38f28e2d106" height="40" class="me-2 logo-img"><span class="logo-g">G</span>.<span class="logo-e">E</span>.<span class="logo-c">C</span> <small>Du Học</small></a>
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="nav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link active" href="index.html">Trang chủ</a></li>
           <li class="nav-item"><a class="nav-link" href="#duhoc">Du học</a></li>
-          <li class="nav-item"><a class="nav-link" href="#hocbong">Học bổng</a></li>
-          <li class="nav-item"><a class="nav-link" href="#khoahoc">Khóa học</a></li>
-          <li class="nav-item"><a class="nav-link" href="#tintuc">Tin tức</a></li>
-          <li class="nav-item"><a class="nav-link" href="#hocvien">Học viên</a></li>
           <li class="nav-item"><a class="nav-link" href="#dangky">Đăng ký</a></li>
-          <li class="nav-item"><button class="theme-toggle ms-2" id="themeToggle" style="background:transparent;border:none;color:#fff;font-size:1.2rem;"><i class="fas fa-moon"></i></button></li>
+          <li class="nav-item"><a class="nav-link" href="admin.html">Admin</a></li>
+          <li class="nav-item"><button id="themeToggle" class="btn btn-sm ms-2">🌓</button></li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Hero -->
   <section class="hero-section" id="home">
-    <div class="container hero-content">
-      <div class="row align-items-center">
-        <div class="col-lg-7">
-          <h1 class="hero-title">Chắp Cánh <span class="highlight">Ước Mơ</span> Toàn Cầu</h1>
-          <p class="text-secondary mb-4">Đồng hành cùng 5.000+ học viên chinh phục tri thức tại các quốc gia phát triển.</p>
-          <div class="d-flex gap-3">
-            <a href="#dangky" class="btn-glow">Đăng ký tư vấn</a>
-            <a href="#duhoc" class="btn btn-outline-light rounded-pill px-4 py-2">Khám phá</a>
-          </div>
-        </div>
-        <div class="col-lg-5 d-none d-lg-block text-center">
-          <img src="https://placehold.co/400x400/1e1b4b/ffffff?text=G.E.C" alt="GEC" class="glass-card p-3" style="max-width:100%;border-radius:30px;">
-        </div>
-      </div>
+    <div class="container text-center">
+      <h1 class="hero-title">Chắp Cánh <span class="highlight">Ước Mơ</span><br>Toàn Cầu</h1>
+      <p class="text-secondary mb-4">Cùng G-E-C chinh phục du học Nhật, Hàn, Đức, Úc, Canada, Mỹ...</p>
+      <a href="#dangky" class="btn-glow">Đăng ký tư vấn miễn phí</a>
     </div>
   </section>
 
-  <!-- Du học -->
   <section id="duhoc" class="py-5">
     <div class="container">
-      <div class="section-title"><h2>Các Quốc Gia <span style="color:var(--brown);">Du Học</span></h2><div class="line"></div></div>
+      <div class="section-title"><h2>Các Quốc Gia</h2><div class="line"></div></div>
       <div class="row g-4" id="countryGrid"></div>
     </div>
   </section>
 
-  <!-- Học bổng -->
-  <section id="hocbong" class="py-5">
+  <section id="dangky" class="py-5 bg-light">
     <div class="container">
-      <div class="section-title"><h2>Học Bổng</h2><div class="line"></div></div>
-      <div class="row g-4" id="scholarshipGrid"></div>
-    </div>
-  </section>
-
-  <!-- Khóa học -->
-  <section id="khoahoc" class="py-5">
-    <div class="container">
-      <div class="section-title"><h2>Khóa Học</h2><div class="line"></div></div>
-      <div class="row g-4" id="courseGrid"></div>
-    </div>
-  </section>
-
-  <!-- Tin tức -->
-  <section id="tintuc" class="py-5">
-    <div class="container">
-      <div class="section-title"><h2>Tin Tức</h2><div class="line"></div></div>
-      <div class="row g-4" id="newsGrid"></div>
-    </div>
-  </section>
-
-  <!-- Học viên -->
-  <section id="hocvien" class="py-5">
-    <div class="container">
-      <div class="section-title"><h2>Học Viên Tiêu Biểu</h2><div class="line"></div></div>
-      <div class="swiper studentSwiper">
-        <div class="swiper-wrapper" id="studentSlider"></div>
-        <div class="swiper-pagination"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Đăng ký -->
-  <section id="dangky" class="py-5">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <div class="glass-card p-4 p-md-5">
-            <div class="section-title"><h2>Đăng Ký Tư Vấn</h2><div class="line"></div></div>
-            <form id="registerForm">
-              <div class="row g-3">
-                <div class="col-md-6"><label class="form-label text-secondary">Họ tên *</label><input type="text" class="form-control bg-transparent text-white border-secondary" id="regName" required></div>
-                <div class="col-md-6"><label class="form-label text-secondary">SĐT *</label><input type="tel" class="form-control bg-transparent text-white border-secondary" id="regPhone" required></div>
-                <div class="col-md-6"><label class="form-label text-secondary">Email</label><input type="email" class="form-control bg-transparent text-white border-secondary" id="regEmail"></div>
-                <div class="col-md-6"><label class="form-label text-secondary">Quốc gia</label><select class="form-select bg-transparent text-white border-secondary" id="regCountry"></select></div>
-                <div class="col-12"><textarea class="form-control bg-transparent text-white border-secondary" rows="3" placeholder="Ghi chú" id="regNote"></textarea></div>
-                <div class="col-12"><button type="submit" class="btn-glow w-100">Gửi đăng ký</button></div>
-              </div>
-            </form>
-            <div id="registerSuccess" class="text-center mt-3 d-none"><i class="fas fa-check-circle text-success fa-3x"></i><p class="mt-2">Đăng ký thành công!</p></div>
-          </div>
+      <div class="row justify-content-center"><div class="col-lg-6">
+        <div class="glass-card p-4 p-md-5">
+          <div class="section-title"><h2>Đăng Ký Tư Vấn</h2><div class="line"></div></div>
+          <form id="registerForm">
+            <input class="form-control mb-3" placeholder="Họ tên" id="regName" required>
+            <input class="form-control mb-3" placeholder="Số điện thoại" id="regPhone" required>
+            <input class="form-control mb-3" placeholder="Email" id="regEmail">
+            <select class="form-select mb-3" id="regCountry"></select>
+            <textarea class="form-control mb-3" rows="2" placeholder="Ghi chú" id="regNote"></textarea>
+            <button class="btn-glow w-100">Gửi đăng ký</button>
+          </form>
+          <div id="registerSuccess" class="text-center mt-3 d-none">✅ Đăng ký thành công!</div>
         </div>
-      </div>
+      </div></div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="py-5">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4"><h5 class="logo-g">G</span>.<span class="logo-e">E</span>.<span class="logo-c">C</span></h5><p class="text-secondary">Trung tâm tư vấn du học hàng đầu.</p></div>
-        <div class="col-md-4"><h5>Liên kết</h5><a href="nhatban.html" class="d-block text-secondary">Nhật Bản</a><a href="hanquoc.html" class="d-block text-secondary">Hàn Quốc</a><a href="duc.html" class="d-block text-secondary">Đức</a></div>
-        <div class="col-md-4"><h5>Liên hệ</h5><p class="text-secondary"><i class="fas fa-phone"></i> <span id="footerPhone"></span></p><p class="text-secondary"><i class="fas fa-envelope"></i> <span id="footerEmail"></span></p></div>
-      </div>
-    </div>
-  </footer>
+  <footer class="text-center"><div class="container"><p>© 2026 G-E-C Du Học | Hotline: <span id="footerPhone"></span></p></div></footer>
 
-  <!-- AI Chat & Dock -->
+  <!-- AI Chat, Dock -->
   <div class="ai-chat-bubble"><button class="ai-chat-btn" id="aiChatToggle"><i class="fas fa-robot"></i></button></div>
-  <div class="ai-chat-window" id="aiChatWindow">
-    <div class="ai-chat-header p-3 d-flex align-items-center gap-2" style="background:rgba(139,94,60,0.3);">
-      <div style="width:40px;height:40px;border-radius:50%;background:var(--gradient-1);display:flex;align-items:center;justify-content:center;"><i class="fas fa-robot"></i></div>
-      <div><strong>AI Tư Vấn</strong><br><small>24/7</small></div>
-      <button class="btn-close btn-close-white ms-auto" id="aiChatClose"></button>
-    </div>
-    <div class="ai-chat-messages" id="aiChatMessages"><div class="ai-message bot">👋 Chào bạn, tôi có thể giúp gì?</div></div>
-    <div class="ai-chat-input"><input type="text" placeholder="Nhập câu hỏi..." id="aiChatInput"><button id="aiChatSend"><i class="fas fa-paper-plane"></i></button></div>
-  </div>
-
-  <div class="floating-dock">
-    <div class="dock-menu" id="dockMenu"></div>
-    <button class="dock-toggle" id="dockToggle"><i class="fas fa-comments"></i></button>
-  </div>
+  <div class="ai-chat-window" id="aiChatWindow">...</div>
+  <div class="floating-dock"><div class="dock-menu" id="dockMenu"></div><button class="dock-toggle" id="dockToggle"><i class="fas fa-comments"></i></button></div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
   <script src="js/gist-api.js"></script>
   <script src="js/app.js"></script>
-  <script>
-    document.getElementById('themeToggle').onclick = () => {
-      const html = document.documentElement;
-      const next = html.getAttribute('data-bs-theme') === 'dark' ? 'light' : 'dark';
-      html.setAttribute('data-bs-theme', next);
-      document.getElementById('themeToggle').innerHTML = next==='dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
-    };
-    window.addEventListener('load', () => {
-      document.getElementById('footerPhone').textContent = siteData.siteConfig.phone;
-      document.getElementById('footerEmail').textContent = siteData.siteConfig.email;
-      const select = document.getElementById('regCountry');
-      if (select && siteData) {
-        select.innerHTML = '<option value="">-- Chọn --</option>' + siteData.countries.map(c => `<option>${c.name}</option>`).join('');
-      }
-    });
-  </script>
 </body>
 </html>
