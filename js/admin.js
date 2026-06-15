@@ -3,13 +3,17 @@ let adminData = {
     phone: '1900 123 456', email: 'info@gec-duhoc.edu.vn', address: '123 Nguyễn Huệ',
     telegramBotToken: '', telegramChatId: '',
     logoUrl: 'https://img.upanhnhanh.com/8810234eeb91bf4e9ffdb38f28e2d106',
+    aiApiKey: '', aiModel: 'gpt-3.5-turbo',
     socials: { zalo:'', telegram:'', facebook:'', messenger:'', gmail:'', tiktok:'' },
     aiResponses: {}
   },
   countries: [
     { name:'Nhật Bản', slug:'nhatban', flag:'🇯🇵', image:'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600', desc:'...', condition:'N5', cost:'180-250 triệu', scholarship:'MEXT' }
   ],
-  scholarships: [], courses: [], posts: [], students: []
+  scholarships: [],
+  courses: [],
+  posts: [],
+  students: []
 };
 
 function loadLocal() {
@@ -111,7 +115,16 @@ function fillSettings() {
   document.getElementById('telegramBotToken').value = cfg.telegramBotToken || '';
   document.getElementById('telegramChatId').value = cfg.telegramChatId || '';
   document.getElementById('logoUrl').value = cfg.logoUrl || '';
+  document.getElementById('aiApiKey').value = cfg.aiApiKey || '';
+  document.getElementById('aiModel').value = cfg.aiModel || '';
   document.getElementById('aiResponses').value = JSON.stringify(cfg.aiResponses || {}, null, 2);
+  const socialsDiv = document.getElementById('socialsContainer');
+  if (socialsDiv) {
+    socialsDiv.innerHTML = '';
+    for (let [key,val] of Object.entries(cfg.socials||{})) {
+      socialsDiv.innerHTML += `<div class="col-md-6"><label>${key}</label><input class="form-control social-input" data-key="${key}" value="${val}"></div>`;
+    }
+  }
 }
 
 function saveSettings() {
@@ -122,7 +135,12 @@ function saveSettings() {
   cfg.telegramBotToken = document.getElementById('telegramBotToken').value;
   cfg.telegramChatId = document.getElementById('telegramChatId').value;
   cfg.logoUrl = document.getElementById('logoUrl').value;
+  cfg.aiApiKey = document.getElementById('aiApiKey').value;
+  cfg.aiModel = document.getElementById('aiModel').value;
   try { cfg.aiResponses = JSON.parse(document.getElementById('aiResponses').value); } catch(e) { alert('AI Responses JSON không hợp lệ'); return; }
+  document.querySelectorAll('.social-input').forEach(input => {
+    cfg.socials[input.dataset.key] = input.value;
+  });
   saveLocal();
   alert('Đã lưu cài đặt!');
 }
@@ -138,12 +156,13 @@ async function fetchVisitCount() {
 document.addEventListener('DOMContentLoaded', ()=>{
   loadLocal();
   if (!adminData.countries.length && !localStorage.getItem('gec_admin_data')) {
-    // khởi tạo mặc định
+    // Khởi tạo dữ liệu mẫu
     adminData = {
       siteConfig: {
         phone: '1900 123 456', email: 'info@gec-duhoc.edu.vn', address: '123 Nguyễn Huệ',
         telegramBotToken: '', telegramChatId: '',
         logoUrl: 'https://img.upanhnhanh.com/8810234eeb91bf4e9ffdb38f28e2d106',
+        aiApiKey: '', aiModel: 'gpt-3.5-turbo',
         socials: { zalo:'https://zalo.me/', telegram:'https://t.me/', facebook:'https://fb.com/', messenger:'https://m.me/', gmail:'mailto:info@gec-duhoc.edu.vn', tiktok:'https://tiktok.com/' },
         aiResponses: { 'nhật':'🇯🇵 ...', 'hàn':'🇰🇷 ...' }
       },
