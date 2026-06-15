@@ -1,56 +1,41 @@
-// Dữ liệu admin toàn cục
 let adminData = {
   siteConfig: {
-    phone: '', email: '', address: '',
+    phone: '1900 123 456', email: 'info@gec-duhoc.edu.vn', address: '123 Nguyễn Huệ',
     telegramBotToken: '', telegramChatId: '',
     logoUrl: 'https://img.upanhnhanh.com/8810234eeb91bf4e9ffdb38f28e2d106',
     socials: { zalo:'', telegram:'', facebook:'', messenger:'', gmail:'', tiktok:'' },
     aiResponses: {}
   },
-  countries: [],
-  scholarships: [],
-  courses: [],
-  posts: [],
-  students: []
+  countries: [
+    { name:'Nhật Bản', slug:'nhatban', flag:'🇯🇵', image:'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600', desc:'...', condition:'N5', cost:'180-250 triệu', scholarship:'MEXT' }
+  ],
+  scholarships: [], courses: [], posts: [], students: []
 };
 
-// ========== LOCAL STORAGE ==========
 function loadLocal() {
   const saved = localStorage.getItem('gec_admin_data');
-  if (saved) { try { adminData = JSON.parse(saved); } catch(e){} }
+  if (saved) try { adminData = JSON.parse(saved); } catch(e){}
 }
-function saveLocal() {
-  localStorage.setItem('gec_admin_data', JSON.stringify(adminData));
-}
+function saveLocal() { localStorage.setItem('gec_admin_data', JSON.stringify(adminData)); }
 
-// ========== GIST ==========
 async function loadFromGist() {
   if (!GistAPI.gistId) return;
   try {
     const data = await GistAPI.load();
-    if (data) {
-      adminData = data;
-      saveLocal();
-      renderAll();
-      fillSettings();
-    }
+    if (data) { adminData = data; saveLocal(); renderAll(); fillSettings(); }
   } catch(e){}
 }
 async function syncToGist() {
   if (!GistAPI.token || !GistAPI.gistId) return alert('Cần Token và Gist ID');
-  try {
-    await GistAPI.save(adminData);
-    alert('Đồng bộ thành công!');
-  } catch(e) { alert('Lỗi: '+e.message); }
+  try { await GistAPI.save(adminData); alert('Đồng bộ thành công!'); } catch(e) { alert('Lỗi: '+e.message); }
 }
 
-// ========== RENDER ==========
 function renderList(type) {
   const list = document.getElementById(type+'List');
   if (!list) return;
   const items = adminData[type] || [];
   list.innerHTML = items.map((item,i) => `
-    <div class="list-group-item">
+    <div class="list-group-item d-flex justify-content-between align-items-center">
       <span>${item.name || item.title || '(Không tên)'}</span>
       <div>
         <button class="btn btn-sm btn-outline-secondary edit-btn" data-type="${type}" data-index="${i}"><i class="fas fa-edit"></i></button>
@@ -66,12 +51,10 @@ function renderAll() {
   renderList('courses');
   renderList('posts');
   renderList('students');
-  // Cập nhật dashboard
   document.getElementById('countryCount').textContent = adminData.countries.length;
   document.getElementById('postCount').textContent = adminData.posts.length;
 }
 
-// ========== FORM ==========
 function showForm(type, index=null) {
   const form = document.getElementById(type+'Form');
   if (!form) return;
@@ -120,7 +103,6 @@ function deleteItem(type, index) {
   }
 }
 
-// ========== CÀI ĐẶT ==========
 function fillSettings() {
   const cfg = adminData.siteConfig;
   document.getElementById('setPhone').value = cfg.phone || '';
@@ -130,14 +112,6 @@ function fillSettings() {
   document.getElementById('telegramChatId').value = cfg.telegramChatId || '';
   document.getElementById('logoUrl').value = cfg.logoUrl || '';
   document.getElementById('aiResponses').value = JSON.stringify(cfg.aiResponses || {}, null, 2);
-  // socials
-  const socialsDiv = document.getElementById('socialsContainer');
-  if (socialsDiv) {
-    socialsDiv.innerHTML = '';
-    for (let [key,val] of Object.entries(cfg.socials||{})) {
-      socialsDiv.innerHTML += `<div class="col-md-6"><label>${key}</label><input class="form-control social-input" data-key="${key}" value="${val}"></div>`;
-    }
-  }
 }
 
 function saveSettings() {
@@ -148,47 +122,33 @@ function saveSettings() {
   cfg.telegramBotToken = document.getElementById('telegramBotToken').value;
   cfg.telegramChatId = document.getElementById('telegramChatId').value;
   cfg.logoUrl = document.getElementById('logoUrl').value;
-  try {
-    cfg.aiResponses = JSON.parse(document.getElementById('aiResponses').value);
-  } catch(e) { alert('AI Responses không đúng JSON'); return; }
-  document.querySelectorAll('.social-input').forEach(input => {
-    cfg.socials[input.dataset.key] = input.value;
-  });
+  try { cfg.aiResponses = JSON.parse(document.getElementById('aiResponses').value); } catch(e) { alert('AI Responses JSON không hợp lệ'); return; }
   saveLocal();
   alert('Đã lưu cài đặt!');
 }
 
-// ========== ĐẾM LƯỢT TRUY CẬP ==========
 async function fetchVisitCount() {
   try {
     const res = await fetch('https://api.countapi.xyz/get/gec-duhoc/visits');
     const data = await res.json();
     document.getElementById('visitCount').textContent = data.value || 0;
-  } catch(e) {
-    document.getElementById('visitCount').textContent = 'Lỗi';
-  }
+  } catch(e) { document.getElementById('visitCount').textContent = 'Lỗi'; }
 }
 
-// ========== SỰ KIỆN KHỞI TẠO ==========
 document.addEventListener('DOMContentLoaded', ()=>{
   loadLocal();
-  // Nếu chưa có dữ liệu, khởi tạo mặc định
   if (!adminData.countries.length && !localStorage.getItem('gec_admin_data')) {
+    // khởi tạo mặc định
     adminData = {
       siteConfig: {
         phone: '1900 123 456', email: 'info@gec-duhoc.edu.vn', address: '123 Nguyễn Huệ',
         telegramBotToken: '', telegramChatId: '',
         logoUrl: 'https://img.upanhnhanh.com/8810234eeb91bf4e9ffdb38f28e2d106',
         socials: { zalo:'https://zalo.me/', telegram:'https://t.me/', facebook:'https://fb.com/', messenger:'https://m.me/', gmail:'mailto:info@gec-duhoc.edu.vn', tiktok:'https://tiktok.com/' },
-        aiResponses: { 'nhật':'🇯🇵 Du học Nhật...', 'hàn':'🇰🇷 Du học Hàn...' }
+        aiResponses: { 'nhật':'🇯🇵 ...', 'hàn':'🇰🇷 ...' }
       },
-      countries: [
-        { name:'Nhật Bản', slug:'nhatban', flag:'🇯🇵', image:'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600', desc:'...', condition:'N5', cost:'180-250 triệu', scholarship:'MEXT' }
-      ],
-      scholarships: [],
-      courses: [],
-      posts: [],
-      students: []
+      countries: [{ name:'Nhật Bản', slug:'nhatban', flag:'🇯🇵', image:'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600', desc:'...', condition:'N5', cost:'180-250 triệu', scholarship:'MEXT' }],
+      scholarships: [], courses: [], posts: [], students: []
     };
     saveLocal();
   }
@@ -198,7 +158,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
   if (GistAPI.token && GistAPI.gistId) loadFromGist();
 });
 
-// Nút đồng bộ
 document.getElementById('syncGistBtn').addEventListener('click', syncToGist);
 document.getElementById('exportBtn').addEventListener('click', ()=>{
   const blob = new Blob([JSON.stringify(adminData, null, 2)], {type:'application/json'});
@@ -210,9 +169,8 @@ document.getElementById('importFile').addEventListener('change', function(e){
   reader.onload = function(ev){
     try {
       const imported = JSON.parse(ev.target.result);
-      if (imported.siteConfig) {
-        adminData = imported; saveLocal(); renderAll(); fillSettings(); alert('Đã nhập!');
-      } else alert('File không hợp lệ');
+      if (imported.siteConfig) { adminData = imported; saveLocal(); renderAll(); fillSettings(); alert('Đã nhập!'); }
+      else alert('File không hợp lệ');
     } catch(ex) { alert('Lỗi đọc file'); }
   };
   reader.readAsText(file);
@@ -220,7 +178,6 @@ document.getElementById('importFile').addEventListener('change', function(e){
 document.getElementById('refreshVisits').addEventListener('click', fetchVisitCount);
 document.getElementById('saveSettingsBtn').addEventListener('click', saveSettings);
 
-// Thêm/sửa/xóa cho từng loại
 ['country', 'scholarship', 'course', 'post', 'student'].forEach(type => {
   document.getElementById('add'+type.charAt(0).toUpperCase()+type.slice(1)+'Btn')?.addEventListener('click', ()=>showForm(type));
   document.getElementById(type+'Form')?.addEventListener('submit', e=>saveForm(type, e));
