@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>G-E-C Du Học - Chắp Cánh Ước Mơ Toàn Cầu</title>
+  <meta name="description" content="Trung tâm du học G-E-C - Nhật, Hàn, Đức, Úc, Canada, Mỹ, Đài Loan, Singapore">
+  <link id="dynamicFavicon" rel="icon" href="">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
@@ -12,10 +14,18 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div id="loading-screen" style="position:fixed;inset:0;background:#0a0a1a;display:flex;align-items:center;justify-content:center;z-index:99999;">
-    <div style="font-size:4rem;font-weight:900;background:linear-gradient(135deg,#8B5E3C,#DC2626,#16A34A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">G.E.C</div>
+  <!-- Loading screen -->
+  <div id="loading-screen" style="position:fixed;inset:0;background:#0a0a1a;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:99999;transition:opacity 0.6s;">
+    <img id="loaderLogo" src="" style="max-width:150px;max-height:150px;object-fit:contain;display:none;">
+    <div id="loaderText" style="font-size:4rem;font-weight:900;letter-spacing:2px;">
+      <span style="color:#8B5E3C;">G</span>.
+      <span style="color:#DC2626;">E</span>.
+      <span style="color:#16A34A;">C</span>
+    </div>
+    <div style="width:50px;height:50px;border:3px solid rgba(255,255,255,0.1);border-top-color:#16A34A;border-radius:50%;animation:spin 0.8s linear infinite;margin-top:20px;"></div>
   </div>
 
+  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-glass fixed-top">
     <div class="container">
       <a class="navbar-brand" href="index.html"><span class="logo-g">G</span>.<span class="logo-e">E</span>.<span class="logo-c">C</span> <small style="color:#cbd5e1;">Du Học</small></a>
@@ -37,6 +47,7 @@
     </div>
   </nav>
 
+  <!-- Hero -->
   <section class="hero-section" id="home">
     <div class="container hero-content">
       <div class="row align-items-center">
@@ -55,35 +66,87 @@
     </div>
   </section>
 
-  <section id="duhoc" class="py-5"><div class="container"><div class="section-title"><h2>Các Quốc Gia <span style="color:var(--brown);">Du Học</span></h2><div class="line"></div></div><div class="row g-4" id="countryGrid"></div></div></section>
-  <section id="hocbong" class="py-5"><div class="container"><div class="section-title"><h2>Học Bổng</h2><div class="line"></div></div><div class="row g-4" id="scholarshipGrid"></div></div></section>
-  <section id="khoahoc" class="py-5"><div class="container"><div class="section-title"><h2>Khóa Học</h2><div class="line"></div></div><div class="row g-4" id="courseGrid"></div></div></section>
-  <section id="tintuc" class="py-5"><div class="container"><div class="section-title"><h2>Tin Tức</h2><div class="line"></div></div><div class="row g-4" id="newsGrid"></div></div></section>
-  <section id="hocvien" class="py-5"><div class="container"><div class="section-title"><h2>Học Viên Tiêu Biểu</h2><div class="line"></div></div><div class="swiper studentSwiper"><div class="swiper-wrapper" id="studentSlider"></div><div class="swiper-pagination"></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div></div></div></section>
-
-  <section id="dangky" class="py-5">
+  <!-- Du học -->
+  <section id="duhoc" class="py-5">
     <div class="container">
-      <div class="row justify-content-center"><div class="col-lg-8">
-        <div class="glass-card p-4 p-md-5">
-          <div class="section-title"><h2>Đăng Ký Tư Vấn</h2><div class="line"></div></div>
-          <form id="registerForm">
-            <div class="row g-3">
-              <div class="col-md-6"><label class="form-label text-secondary">Họ tên *</label><input type="text" class="form-control bg-transparent text-white border-secondary" id="regName" required></div>
-              <div class="col-md-6"><label class="form-label text-secondary">SĐT *</label><input type="tel" class="form-control bg-transparent text-white border-secondary" id="regPhone" required></div>
-              <div class="col-md-6"><label class="form-label text-secondary">Email</label><input type="email" class="form-control bg-transparent text-white border-secondary" id="regEmail"></div>
-              <div class="col-md-6"><label class="form-label text-secondary">Quốc gia</label><select class="form-select bg-transparent text-white border-secondary" id="regCountry"></select></div>
-              <div class="col-12"><textarea class="form-control bg-transparent text-white border-secondary" rows="3" placeholder="Ghi chú" id="regNote"></textarea></div>
-              <div class="col-12"><button type="submit" class="btn-glow w-100">Gửi đăng ký</button></div>
-            </div>
-          </form>
-          <div id="registerSuccess" class="text-center mt-3 d-none"><i class="fas fa-check-circle text-success fa-3x"></i><p class="mt-2">Đăng ký thành công!</p></div>
-        </div>
-      </div></div>
+      <div class="section-title"><h2>Các Quốc Gia <span style="color:var(--brown);">Du Học</span></h2><div class="line"></div></div>
+      <div class="row g-4" id="countryGrid"></div>
     </div>
   </section>
 
-  <footer class="py-5"><div class="container"><div class="row"><div class="col-md-4"><div class="footer-logo"><span class="logo-g">G</span>.<span class="logo-e">E</span>.<span class="logo-c">C</span></div><p class="text-secondary">Trung tâm tư vấn du học hàng đầu.</p></div><div class="col-md-4"><h5>Liên kết</h5><a href="nhatban.html" class="d-block text-secondary">Nhật Bản</a><a href="hanquoc.html" class="d-block text-secondary">Hàn Quốc</a><a href="duc.html" class="d-block text-secondary">Đức</a></div><div class="col-md-4"><h5>Liên hệ</h5><p class="text-secondary"><i class="fas fa-phone"></i> <span id="footerPhone">1900 123 456</span></p><p class="text-secondary"><i class="fas fa-envelope"></i> <span id="footerEmail">info@gec-duhoc.edu.vn</span></p></div></div></div></footer>
+  <!-- Học bổng -->
+  <section id="hocbong" class="py-5">
+    <div class="container">
+      <div class="section-title"><h2>Học Bổng</h2><div class="line"></div></div>
+      <div class="row g-4" id="scholarshipGrid"></div>
+    </div>
+  </section>
 
+  <!-- Khóa học -->
+  <section id="khoahoc" class="py-5">
+    <div class="container">
+      <div class="section-title"><h2>Khóa Học</h2><div class="line"></div></div>
+      <div class="row g-4" id="courseGrid"></div>
+    </div>
+  </section>
+
+  <!-- Tin tức -->
+  <section id="tintuc" class="py-5">
+    <div class="container">
+      <div class="section-title"><h2>Tin Tức</h2><div class="line"></div></div>
+      <div class="row g-4" id="newsGrid"></div>
+    </div>
+  </section>
+
+  <!-- Học viên -->
+  <section id="hocvien" class="py-5">
+    <div class="container">
+      <div class="section-title"><h2>Học Viên Tiêu Biểu</h2><div class="line"></div></div>
+      <div class="swiper studentSwiper">
+        <div class="swiper-wrapper" id="studentSlider"></div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Đăng ký -->
+  <section id="dangky" class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="glass-card p-4 p-md-5">
+            <div class="section-title"><h2>Đăng Ký Tư Vấn</h2><div class="line"></div></div>
+            <form id="registerForm">
+              <div class="row g-3">
+                <div class="col-md-6"><label class="form-label text-secondary">Họ tên *</label><input type="text" class="form-control bg-transparent text-white border-secondary" id="regName" required></div>
+                <div class="col-md-6"><label class="form-label text-secondary">SĐT *</label><input type="tel" class="form-control bg-transparent text-white border-secondary" id="regPhone" required></div>
+                <div class="col-md-6"><label class="form-label text-secondary">Email</label><input type="email" class="form-control bg-transparent text-white border-secondary" id="regEmail"></div>
+                <div class="col-md-6"><label class="form-label text-secondary">Quốc gia</label><select class="form-select bg-transparent text-white border-secondary" id="regCountry"></select></div>
+                <div class="col-12"><textarea class="form-control bg-transparent text-white border-secondary" rows="3" placeholder="Ghi chú" id="regNote"></textarea></div>
+                <div class="col-12"><button type="submit" class="btn-glow w-100">Gửi đăng ký</button></div>
+              </div>
+            </form>
+            <div id="registerSuccess" class="text-center mt-3 d-none"><i class="fas fa-check-circle text-success fa-3x"></i><p class="mt-2">Đăng ký thành công!</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4"><h5 class="logo-g">G</span>.<span class="logo-e">E</span>.<span class="logo-c">C</span></h5><p class="text-secondary">Trung tâm tư vấn du học hàng đầu.</p></div>
+        <div class="col-md-4"><h5>Liên kết</h5><a href="nhatban.html" class="d-block text-secondary">Nhật Bản</a><a href="hanquoc.html" class="d-block text-secondary">Hàn Quốc</a><a href="duc.html" class="d-block text-secondary">Đức</a></div>
+        <div class="col-md-4"><h5>Liên hệ</h5><p class="text-secondary"><i class="fas fa-phone"></i> <span id="footerPhone"></span></p><p class="text-secondary"><i class="fas fa-envelope"></i> <span id="footerEmail"></span></p></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- AI Chat & Dock -->
   <div class="ai-chat-bubble"><button class="ai-chat-btn" id="aiChatToggle"><i class="fas fa-robot"></i></button></div>
   <div class="ai-chat-window" id="aiChatWindow">
     <div class="ai-chat-header p-3 d-flex align-items-center gap-2" style="background:rgba(139,94,60,0.3);">
@@ -111,17 +174,14 @@
       const next = html.getAttribute('data-bs-theme') === 'dark' ? 'light' : 'dark';
       html.setAttribute('data-bs-theme', next);
       document.getElementById('themeToggle').innerHTML = next==='dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
-      localStorage.setItem('gec_theme', next);
     };
     window.addEventListener('load', () => {
-      // Cập nhật select quốc gia
+      document.getElementById('footerPhone').textContent = siteData.siteConfig.phone;
+      document.getElementById('footerEmail').textContent = siteData.siteConfig.email;
       const select = document.getElementById('regCountry');
       if (select && siteData) {
         select.innerHTML = '<option value="">-- Chọn --</option>' + siteData.countries.map(c => `<option>${c.name}</option>`).join('');
       }
-      // Cập nhật footer liên hệ
-      document.getElementById('footerPhone').textContent = siteData.siteConfig.phone;
-      document.getElementById('footerEmail').textContent = siteData.siteConfig.email;
     });
   </script>
 </body>
